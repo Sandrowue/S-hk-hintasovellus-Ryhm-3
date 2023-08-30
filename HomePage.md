@@ -9,5 +9,5 @@ Tuulen nopeus | Automaattinen | (fiktiivinen esimerkki) https://fmi.fi
 Lämpotila | Automaattinen, API | (fiktiivinen esimerkki) https://fmi.fi
 
 Tietovarasto sivun suunnittelun aikana on javascript-sanakirja, jossa arvot on kirjoitettu
-suoraan ohjelmakoodiin `app.js`:n Reititys-osaan.
+suoraan ohjelmakoodiin `app.js`:n reititys-osaan.
 
