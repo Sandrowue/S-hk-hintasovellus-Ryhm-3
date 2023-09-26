@@ -28,3 +28,13 @@ new Bree, ja määritellään siinä minkä jobs kansion tehtävän Bree suoritt
 Key `name:` jälkeen kirjoitetaan sisennysmerkeissä tiedoston nimi mikä on jobs kansion alla, ja sisältää
 suorittavaa koodia. Key `interval:` jälkeen kirjoitetaan toivotun aikavälin milloin suoritus tapahtuu.
 Breellä pitäisi myös pystyä käyttämään cron muotoa `cron` key avulla, mitä en ole viellä kokeillut.
+
+Hyviä puolia
+- schedulit toimivat luetettavasti myös jos on määritelty monta erillisiä tehtäviä perkäkkäin
+- kun kerran kansiorakenteen ymmärtää, schedulit ovat suhteellisen helposti ja nopeasti koodattu käyttövalmiiksi.
+
+Haasteita
+- Kokeillun console.log in lisäksi ohjelma tulostaa huomautuksia kuten:
+  'Worker for job "next" online undefined' ja 'Worker for job "process" exited with code 0 undefined',
+  mistä en vielä tiedä mihin ne viittaavat ja miten niitä saadaan pois. Voisin kuvitella että ylimääräiset
+  lauseet voisivat jossain tapauksissa saada ohjelman sekaisin.
