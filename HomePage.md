@@ -16,3 +16,12 @@ suoraan ohjelmakoodiin `app.js`:n reititys-osaan.
 > Aiemmin käytettiin termiä GMT (Greenwich Mean Time). Suomen aika on talvella 2 tuntia edellä ja kesäaikaa käytettäessä 3 tuntia edellä.
 > Suomen aikavyöhykkeestä käytetään lyhenne EET (East European Standard Time). Käyttöjärjestelmissä viitataan usein pääkaupunkeihin
 > tyylin Helsinki, Vilna, Tallinna, Kiova jne.
+
+# Haarat ja moduulit
+Sivujen silällön luomiseksi je renderöimiseksi luodaan omat muduulit. Moduulien nimet ja käyttötarkoitukset ilmenevät seuraavasta taulukosta:
+
+| Tiedosto | Tarkoitus | Tekijä / tekijät |
+|---|---|---|
+getHomePageData.js | Lukee tietokannasta nykyisen sähkön tuntihinnan, tuulen nopeuden ja lämpötilan. Lämpötila ja tuulli lisätään myöhemmin. | ''
+hourlyPageData.js | Lukee tietokannasta päivän tuntihinnat | ''
+createGraphics.js | Lukee tietokannasta dataa ja muodostaa kaaviot: päivä, edellinenen viikko, hintakehitys viikko ja kuukausi taaksepäin | ''
