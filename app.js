@@ -82,32 +82,6 @@ app.get('/hourly', (req, res) => {
     
 });
 
-app.get('/plotly', (req, res) => {
-    hprice.getHourlyPrice().then((resultset) => {
-        var tableData = resultset.rows
-        
-        let tableHours = [];
-        let tablePrices = [];
-
-        for (i in tableData) {
-            let hourStr = tableData[i]['hour'];
-            let hourNr = Number(hourStr)
-            tableHours.push(hourNr)
-
-            let priceNr = tableData[i]['price'];
-            tablePrices.push(priceNr)
-        }
-
-        let jsonTableHours = JSON.stringify(tableHours);
-        
-        let jsonTablePrices = JSON.stringify(tablePrices);
-        
-        let chartPageData = { 'chartHours': jsonTableHours, 'chartPrices': jsonTablePrices};
-        
-        res.render('plotly', chartPageData)
-    });
-})
-
 // START THE LISTENER
 app.listen(PORT);
 console.log('Server started and it will listen PCP port', PORT);
