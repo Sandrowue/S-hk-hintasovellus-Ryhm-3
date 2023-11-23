@@ -28,7 +28,13 @@
     const yValues = {{chartPrices}};
     // const xValues = [13, 14, 15, 16];
     // const yValues = [31.44, 32.1, 30.5, 29.99];
-    const barColors = "orange";
+    const barColors = [];
+
+    for(i = 0; i < yValues.length; i++){
+        if(yValues[i] < 0) {barColors.push("rgba(10, 185, 0, 0.8)")}
+        if(yValues[i] >= 0 && yValues[i] <=5) {barColors.push("rgba(119, 180, 255, 1)")}
+        if(yValues[i] >= 5) {barColors.push("rgba(255, 0, 0, 1)")}
+    }
 
     new Chart("sähköhinta", {
         type: "bar",
@@ -75,7 +81,7 @@
             y: yArray,
             type: 'bar',
             orientation: "v",
-            marker: { color: "rgba(0,0,255,0.6)" },
+            marker: { color: "rgba(0, 188, 255, 1)" },
             text: 'euro',
             name: 'hinta'
             

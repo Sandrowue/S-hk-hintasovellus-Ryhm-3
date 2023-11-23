@@ -1,11 +1,11 @@
 {
     "database": {
         "user": "postgres",
-        "password": "helenium",
-        "host": "192.168.196.10",
-        "database": "power_consumption_app",
+        "password": "Q2werty7",
+        "host": "192.168.180.129",
+        "database": "smarthome2",
         "port": "5432"
     },
     
-    "timer": "*/5 15 * * *"
+    "timer": "*/2 15 * * *"
 }
