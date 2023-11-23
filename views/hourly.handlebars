@@ -1,0 +1,91 @@
+<h1>Sähkön tuntihinnat seuraavalle 24 tunnille</h1>
+
+<table>
+    <tr>
+        <th>Päivä</th>
+        <th>Tunti</th>
+        <th>Hinta (snt/kWh)</th>
+    </tr>
+    {{#each tableData}}
+    <tr><td>{{day}}</td>
+        <td>{{hour}}</td>
+        <td>{{price}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+<!-- Chart.js -->
+
+<div>
+    <canvas id="sähköhinta" style="width:80%;max-width:700px"></canvas> 
+</div>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script> 
+<script>   
+    const xValues = {{chartHours}};
+    const yValues = {{chartPrices}};
+    // const xValues = [13, 14, 15, 16];
+    // const yValues = [31.44, 32.1, 30.5, 29.99];
+    const barColors = "orange";
+
+    new Chart("sähköhinta", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'euro',
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Päivittäinen Sähköhinta"
+           
+            },
+            legend: {
+                display: true,
+                labels: {
+                    color: "orange",
+                    text: "euro"
+                }
+            }
+
+        }
+        
+    })
+</script>
+
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<div id="plVersio" style="width:80%;max-width:700px"></div>
+
+<!-- Plotly.js -->
+
+<script>
+    const xArray = {{chartHours}};
+    const yArray = {{chartPrices}};
+    const data = [
+        {
+            x: xArray,
+            y: yArray,
+            type: 'bar',
+            orientation: "v",
+            marker: { color: "rgba(0,0,255,0.6)" },
+            text: 'euro',
+            name: 'hinta'
+            
+    }];
+
+    const layout = { title: "Sähköhinta"};
+
+    Plotly.newPlot('plVersio', data, layout);
+</script>
+
+
+
+

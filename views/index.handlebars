@@ -1,0 +1,54 @@
+<p>Tämä on testiaikainen kotisivu, jossa on simuloitua dataa</p>
+<h1>Sähkö on nyt kallista</h1>
+<h1 class="expensive">{{price}} snt/kWh</h1>
+<h2>Tuuli {{wind}} m/s</h2>
+<h2>Lämpötila {{temperature}}</h2>
+
+<br>
+<br>
+<br>
+
+<h3>Tänään on</h3>
+<h3 id="dayName"></h3>
+<h3 id="dateString"></h3>
+
+<h2 ondload=showTime() id="clock"></h2>
+
+<script>
+    const showTime = () => {
+        const date = new Date();
+        let h = date.getHours();
+        let m = date.getMinutes();
+        let s = date.getSeconds();
+        let weekdayNumber = date.getDay();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+
+        const dayNameLookup = {
+            1: 'maanantai',
+            2: 'tiistai',
+            3: 'keskiviikko',
+            4: 'torstai',
+            5: 'perjantai',
+            6: 'lauantai',
+            7: 'sunnuntai'
+        };
+
+        let dayName = dayNameLookup[weekdayNumber];
+
+        let time = h + "." + m + "." + s;
+        document.getElementById("clock").innerHTML = time;
+
+        document.getElementById("dayName").innerHTML = dayName;
+
+        document.getElementById("dateString").innerHTML = day + "." + month + "." + year;
+
+        setTimeout(showTime, 1000);
+    }
+    showTime();
+</script>
