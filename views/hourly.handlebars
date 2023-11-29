@@ -26,7 +26,19 @@
 </div>
 
 <div>
-    <canvas id="taulu2" style="width:80%;max-width:700px;height20%;max_height:350px"></canvas> 
+    <canvas id="bartaulu1" style="width:80%;max-width:700px;height20%;max_height:350px"></canvas> 
+</div>
+
+<div>
+    <canvas id="bartaulu2" style="width:80%;max-width:700px;height20%;max_height:350px"></canvas> 
+</div>
+
+<div>
+    <canvas id="linetaulu1" style="width:80%;max-width:700px;height20%;max_height:350px"></canvas> 
+</div>
+
+<div>
+    <canvas id="linetaulu2" style="width:80%;max-width:700px;height20%;max_height:350px"></canvas> 
 </div>
 
 <script
@@ -38,26 +50,26 @@
     const yValues = {{chartPrices}};
     // const xValues = [13, 14, 15, 16];
     // const yValues = [31.44, 32.1, 30.5, 29.99];
-    const ylaRaja = 3.5;
+    const ylaRaja = 18;
     const barColors = [];
+    const barColors2 = [];
     const bordColors = [];
+    const bordColors2 = [];
 
     for(i = 0; i < yValues.length; i++){
-        if(yValues[i] < 0) {barColors.push("rgba(10, 185, 0, 0.6)"),bordColors.push("rgba(0, 167, 12, 1)")}
-        if(yValues[i] >= 0 && yValues[i] <=ylaRaja) {barColors.push("rgba(255, 226, 0, 0.6)"),bordColors.push("rgba(255, 234, 79, 1)")}
-        if(yValues[i] >= ylaRaja) {barColors.push("rgba(255, 0, 0, 0.6)"),bordColors.push("rgba(255, 55, 55, 1)")}
+        if(yValues[i] <= 0) {barColors.push("rgba(10, 185, 0, 0.8)"),bordColors.push("rgba(0, 167, 12, 1)")}
+        if(yValues[i] > 0 && yValues[i] <=ylaRaja) {barColors.push("rgba(255, 170, 0, 0.8)"),bordColors.push("rgba(246, 123, 0, 1)"),barColors2.push("rgba(0, 202, 255, 1)"),bordColors2.push("rgba(0, 142, 228, 1)")}
+        if(yValues[i] >= ylaRaja) {barColors.push("rgba(255, 0, 0, 0.8)"),bordColors.push("rgba(165, 0, 0, 1)"),barColors2.push("rgba(255, 0, 0, 0.8)"),bordColors2.push("rgba(165, 0, 0, 1)")}
     }
 
-    new Chart("sähköhinta", {//TauluV.1
+    new Chart("sähköhinta", {
         type: "bar",
         data: {
             labels: xValues,
             datasets: [{
                 label: 'euro',
                 maxBarThickness: 40,
-                backgroundColor: barColors,
-                borderColor: bordColors,
-                borderWidth: 3,
+                backgroundColor: "orange",
                 data: yValues
             }]
         },
@@ -86,15 +98,130 @@
         
     })
 
-    new Chart("taulu2", { //TauluV.2
+    new Chart("bartaulu1", {//TauluV.1
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'euro',
+                maxBarThickness: 30,
+                backgroundColor: barColors,
+                borderColor: bordColors,
+                borderWidth: 2,
+                data: yValues
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            title: {
+                display: true,
+                text: "Päivittäinen Sähköhinta"
+           
+            },
+            legend: {
+                display: true,
+                labels: {
+                    color: "red",
+                    text: "euro"
+                }
+            }
+
+        }
+        
+    })
+
+    new Chart("bartaulu2", {//TauluV.2
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'euro',
+                //maxBarThickness: 30,
+                backgroundColor: barColors2,
+                //borderColor: bordColors2,
+                //borderWidth: 2,
+                data: yValues
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            title: {
+                display: true,
+                text: "Päivittäinen Sähköhinta"
+           
+            },
+            legend: {
+                display: true,
+                labels: {
+                    color: "red",
+                    text: "euro"
+                }
+            }
+
+        }
+        
+    })
+
+    new Chart("linetaulu1", { //TauluV.3
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'euro',
+                fill: false,
+                borderColor: "rgba(255, 234, 79, 1)",
+                borderWidth: 2,
+                data: yValues,
+                tension: 0,
+                pointRadius: 0 
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            title: {
+                display: true,
+                text: "Päivittäinen Sähköhinta"
+           
+            },
+            legend: {
+                display: true,
+                labels: {
+                    color: "red",
+                    text: "euro"
+                }
+            }
+
+        }
+        
+    })
+
+    new Chart("linetaulu2", { //TauluV.4
         type: "line",
         data: {
             labels: xValues,
             datasets: [{
                 label: 'euro',
                 fill: true,
-                backgroundColor: "rgba(255, 226, 0, 0.6)",
-                borderColor: "rgba(255, 234, 79, 1)",
+                backgroundColor: "rgba(255, 226, 0, 0.7)",
+                borderColor: "orange",
                 borderWidth: 2,
                 data: yValues,
                 tension: 0
