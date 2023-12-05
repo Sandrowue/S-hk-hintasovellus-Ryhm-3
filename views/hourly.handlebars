@@ -22,7 +22,7 @@
 <!-- Chart.js -->
 
 <div>
-    <canvas id="sähköhinta" style="width:80%;max-width:700px;height80%;max_height:350px"></canvas> 
+    <canvas id="sähköhinta" style="width:80%;max-width:700px;height80%;max_height:600px;margin:auto"></canvas> 
 </div>
 
 <div>
@@ -46,14 +46,14 @@
     const yValues = {{chartPrices}};
     // const xValues = [13, 14, 15, 16];
     // const yValues = [31.44, 32.1, 30.5, 29.99];
-    const ylaRaja = 25;
+    const ylaRaja = 24;
     const barColors = [];
     const bordColors = [];
 
     for(i = 0; i < yValues.length; i++){
-        if(yValues[i] <= 0) {barColors.push("rgba(10, 185, 0, 0.5)"),bordColors.push("rgba(0, 167, 12, 1)")}
-        if(yValues[i] > 0 && yValues[i] <=ylaRaja) {barColors.push("rgb(34, 88, 122, 0.5)"),bordColors.push("rgb(24, 61, 85, 1)")}
-        if(yValues[i] >= ylaRaja) {barColors.push("rgba(255, 0, 0, 0.5)"),bordColors.push("rgba(165, 0, 0, 1)")}
+        if(yValues[i] <= 0) {barColors.push("rgba(10, 185, 0, 0.7)"),bordColors.push("rgba(0, 167, 12, 1)")}
+        if(yValues[i] > 0 && yValues[i] <=ylaRaja) {barColors.push("rgb(34, 88, 122, 0.7)"),bordColors.push("rgb(24, 61, 85, 1)")}
+        if(yValues[i] >= ylaRaja) {barColors.push("rgba(255, 0, 0, 0.7)"),bordColors.push("rgba(165, 0, 0, 1)")}
     }
 
     new Chart("sähköhinta", {
@@ -98,7 +98,7 @@
             labels: xValues,
             datasets: [{
                 label: 'euro',
-                maxBarThickness: 30,
+                maxBarThickness: 35,
                 backgroundColor: barColors,
                 borderColor: bordColors,
                 borderWidth: 2,
@@ -113,7 +113,7 @@
                     },
                     gridLines: {
                         //display: false,
-                        color: "#ffffff" 
+                        color: "#000000" 
                     }
                 }],
                 xAxes: [{
@@ -129,7 +129,7 @@
            
             },
             legend: {
-                display: true,
+                display: false,
                 labels: {
                     color: "red",
                     text: "euro"
@@ -147,11 +147,12 @@
             datasets: [{
                 label: 'euro',
                 fill: false,
-                borderColor: "rgba(255, 234, 79, 1)",
+                backgroundColor: "rgb(24, 61, 85, 1)",
+                borderColor: "rgb(34, 88, 122, 1)",
                 borderWidth: 2,
                 data: yValues,
                 tension: 0,
-                pointRadius: 0 
+                //pointRadius: 0 
             }]
         },
         options: {
@@ -168,7 +169,7 @@
            
             },
             legend: {
-                display: true,
+                display: false,
                 labels: {
                     color: "red",
                     text: "euro"
@@ -186,11 +187,12 @@
             datasets: [{
                 label: 'euro',
                 fill: true,
-                backgroundColor: "rgba(255, 226, 0, 0.7)",
-                borderColor: "orange",
-                borderWidth: 2,
+                backgroundColor: "rgb(34, 88, 122, 1)",
+                //borderColor: "rgb(24, 61, 85, 1)",
+                //borderWidth: 1,
                 data: yValues,
-                tension: 0
+                tension: 0,
+                pointRadius: 0
             }]
         },
         options: {
@@ -207,7 +209,7 @@
            
             },
             legend: {
-                display: true,
+                display: false,
                 labels: {
                     color: "red",
                     text: "euro"
