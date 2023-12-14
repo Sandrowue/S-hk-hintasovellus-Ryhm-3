@@ -82,7 +82,7 @@ class WeatherForecast {
     }
 
     putWeatherObjectToDb() {
-        let tableName = 'weather_forecast';
+        let tableName = 'weather_observation';
         const sqlClause = 'INSERT INTO public.' + tableName + ' VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT DO NOTHING RETURNING *';
         let allWeahterDataToDb = [];
         let trimmedTDRows = [];

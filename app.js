@@ -18,7 +18,7 @@ const {engine} = require('express-handlebars');
 
 // Home made module to get current price
 
-const hprice = require('./getPageData')
+const dynamicData = require('./getPageData')
 
 // Create the server
 const app = express();
@@ -40,23 +40,41 @@ app.get('/', (req, res) => {
     // Handlebars needs a key to show data on page, json is a good way to send it
     let homePageData = {
         'price': 0,
-        'wind': 0,
+        'wind_speed': 0,
+        'wind_direction': 0,
         'temperature': 0
     };
 
-    hprice.getCurrentPrice().then((resultset) => {
+    dynamicData.getCurrentPrice().then((resultset) => {
         homePageData.price = resultset.rows[0]['price']
         console.log(homePageData.price)
+        
+        dynamicData.getCurrentTemperature().then((resultset) => {
+            homePageData.temperature = resultset.rows[0]['temperature']
+            console.log(homePageData.temperature)
+
+            dynamicData.getCurrentWind_direction().then((resultset) => {
+                homePageData.wind_direction = resultset.rows[0]['wind_direction']
+                console.log(homePageData.resultset)
+
+                dynamicData.getCurrentWind_speed().then((resultset) => {
+                    homePageData.wind_speed = resultset.rows[0]['wind_speed']
+                    console.log(homePageData.resultset)
+                    res.render('index', homePageData)
+                })
+            })
+        })
+        
         // Render index.handlebars and send dynamic data to the page
-        res.render('index', homePageData)
     })
+
 
 });
 // Route to hourly data page
 app.get('/hourly', (req, res) => {
     // Data will be presented in a table. To loop all rows we need a key for table and for column
         
-    hprice.getHourlyPrice().then((resultset) => {
+    dynamicData.getHourlyPrice().then((resultset) => {
         var tableData = resultset.rows
         
         let tableHours = [];
