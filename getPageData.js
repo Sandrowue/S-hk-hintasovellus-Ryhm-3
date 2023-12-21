@@ -47,6 +47,10 @@ const getCurrentWind_speed = async () => {
     return resultset;
 }
 
+const getTemeratureForecast = async () => {
+    
+}
+
 module.exports = {
     getCurrentPrice,
     getHourlyPrice,
