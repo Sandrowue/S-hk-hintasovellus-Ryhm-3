@@ -100,6 +100,20 @@ app.get('/hourly', (req, res) => {
     
 });
 
+app.get('/dildoran_index', (req, res) => {
+    let homePageData = {
+        'price': 0
+    };
+
+    dynamicData.getCurrentPrice().then((resultset) => {
+        homePageData.price = resultset.rows[0]['price']
+        console.log(homePageData.price)
+        res.render('dildoran_index', homePageData)
+    })
+    
+
+})
+
 // START THE LISTENER
 app.listen(PORT);
 console.log('Server started and it will listen PCP port', PORT);
