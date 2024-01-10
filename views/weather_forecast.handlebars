@@ -9,4 +9,12 @@
         <th>Tuulivektori X</th>
         <th>Tuulivektori Y</th>
     </tr>
+    {{#each tableData}}
+    <tr>
+        <td>{{timestamp}}</td>
+        <td>{{temperature}}</td>
+        <td>{{wind_vector_x}}</td>
+        <td>{{wind_vector_y}}</td>
+    </tr>
+    {{/each}}
 </table>
