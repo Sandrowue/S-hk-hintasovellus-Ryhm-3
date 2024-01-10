@@ -12,9 +12,8 @@ const addWindY = new forecast.WeatherForecastTimeValue('Turku', 'WindVMS', 'wind
 
 
 cron.schedule(weather_timer, () => {
-    addTemperature.putTimeValuePairsToDb().then(() => {
-        addWindX.putTimeValuePairsToDb().then(() => {
-            addWindY.putTimeValuePairsToDb()
-        })
+    addTemperature.putTimeValuePairsToDb()
+    addWindX.putTimeValuePairsToDb()
+    addWindY.putTimeValuePairsToDb()
     })
-})
+    
