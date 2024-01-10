@@ -75,9 +75,9 @@ app.get('/hourly', (req, res) => {
     // Data will be presented in a table. To loop all rows we need a key for table and for column
         
     dynamicData.getHourlyPrice().then((resultset) => {
-        var tableData = resultset.rows
+        var tableData = resultset.rows;
         
-        let tableHours = [];
+        /*let tableHours = [];
         let tablePrices = [];
 
         for (i in tableData) {
@@ -91,14 +91,22 @@ app.get('/hourly', (req, res) => {
 
         let jsonTableHours = JSON.stringify(tableHours);
         
-        let jsonTablePrices = JSON.stringify(tablePrices);
+        let jsonTablePrices = JSON.stringify(tablePrices);*/
         
-        let chartPageData = { 'chartHours': jsonTableHours, 'chartPrices': jsonTablePrices, 'tableData': tableData};
+        let chartPageData = { /*chartHours': jsonTableHours, 'chartPrices': jsonTablePrices,*/ 'tableData': tableData};
         
         res.render('hourly', chartPageData);
     })
     
 });
+
+app.get('/weather_forecast', (req, res) => {
+    dynamicData.getWeatherForecast().then((resultset) => {
+        var tableData = resultset.rows;
+        let weatherForecastData = {'tableData': tableData};
+        res.render('weather_forecast', weatherForecastData)
+    })    
+})
 
 app.get('/dildoran_index', (req, res) => {
     let homePageData = {
