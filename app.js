@@ -108,6 +108,14 @@ app.get('/weather_forecast', (req, res) => {
     })    
 })
 
+app.get('/weather_observation', (req, res) => {
+    dynamicData.getWeatherObservation().then((resultset) => {
+        var tableData = resultset.rows;
+        let weatherObservationData = {'tableData': tableData};
+        res.render('weather_observation', weatherObservationData)
+    })
+})
+
 app.get('/dildoran_index', (req, res) => {
     let homePageData = {
         'price': 0

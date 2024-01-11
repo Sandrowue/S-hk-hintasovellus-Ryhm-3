@@ -50,8 +50,14 @@ const getCurrentWind_speed = async () => {
 
 const getWeatherForecast = async () => {
     let resultset = await pool.query('SELECT * FROM public.forecast_temp_and_wind_vector ORDER BY timestamp DESC LIMIT 10')
+    return resultset;
+}
+
+const getWeatherObservation = async () => {
+    let resultset = await pool.query('SELECT * FROM public.weather_observation ORDER BY timestamp DESC LIMIT 10')
     console.log(resultset)
     return resultset;
+
 }
 
 module.exports = {
@@ -61,11 +67,12 @@ module.exports = {
     getCurrentWind_direction,
     getCurrentWind_speed,
     getWeatherForecast,
+    getWeatherObservation,
     /*getDay,
     getHour,
     getPrice*/
 }
 
 // getTemperatureForecast()
-getHourlyPrice()
+getWeatherObservation()
 
