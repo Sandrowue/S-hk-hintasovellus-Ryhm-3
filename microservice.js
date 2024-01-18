@@ -3,9 +3,18 @@ const cron = require('node-cron');
 const priceService = require('./priceService');
 const logger = require('./logger')
 const settings = require('./database_and_timer_settings.json');
+const forecast = require('./getFmiForecastData');
+const observation = require('./getFmiObservationListData');
 
 const database = settings.database;
 const timer = settings.timer;
+const weather_timer = settings.weather_timer;
+
+const addTemperature = new forecast.WeatherForecastTimeValue('Turku', 'Temperature', 'temperature');
+const addWindX = new forecast.WeatherForecastTimeValue('Turku', 'WindUMS', 'wind_vector_x');
+const addWindY = new forecast.WeatherForecastTimeValue('Turku', 'WindVMS', 'wind_vector_y');
+
+const addObservation = new observation.WeatherForecast('turku');
 
 const pool = new Pool(
     database
@@ -66,3 +75,13 @@ cron.schedule(timer, () => {
         logger.add2log(message, logFile);
     }
 });
+
+cron.schedule(weather_timer, () => {
+    addTemperature.putTimeValuePairsToDb()
+    addWindX.putTimeValuePairsToDb()
+    addWindY.putTimeValuePairsToDb()
+    })
+
+cron.schedule(weather_timer, () => {
+    addObservation.putTimeValuePairsToDb()
+})
