@@ -1,6 +1,6 @@
 <h1>Sähkön tuntihinnat seuraavalle 24 tunnille</h1>
 
-<!-- Valitun teeman oletettu väri
+<!-- Valitun teeman oletettu väri 
 <style>
     body {background-color: rgb(51, 148, 156);} 
 </style> -->
@@ -21,41 +21,45 @@
 
 <!-- Chart.js -->
 
+<!-- "margin:auto" voi lisätä style osaan jos taulukon haluaa keskittää -->
 <div>
-    <canvas id="sähköhinta" style="width:80%;max-width:700px;height80%;max_height:600px;margin:auto"></canvas> 
+    <canvas id="sähköhinta" style="width:80%;max-width:700px;height80%;max_height:600px"></canvas> 
 </div>
 
 <div>
-    <canvas id="bartaulu1" style="width:80%;max-width:700px;height80%;max_height:350px"></canvas> 
+    <canvas id="PalkkiTaulu" style="width:80%;max-width:700px;height80%;max_height:350px"></canvas> 
 </div>
 
 <div>
-    <canvas id="linetaulu1" style="width:80%;max-width:700px;height80%;max_height:350px"></canvas> 
+    <canvas id="ViivaTaulu" style="width:80%;max-width:700px;height80%;max_height:350px"></canvas> 
 </div>
 
 <div>
-    <canvas id="linetaulu2" style="width:80%;max-width:700px;height80%;max_height:350px"></canvas> 
+    <canvas id="AlueTaulu" style="width:80%;max-width:700px;height80%;max_height:350px"></canvas> 
 </div>
 
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script> 
+
 <script>   
     Chart.defaults.global.defaultFontColor = "#000";
     const xValues = {{chartHours}};
     const yValues = {{chartPrices}};
     // const xValues = [13, 14, 15, 16];
     // const yValues = [31.44, 32.1, 30.5, 29.99];
-    const ylaRaja = 24;
+    const ylaRaja = 5;
     const barColors = [];
     const bordColors = [];
 
+//Palkkien väritys Y arvon eli hintojen mukaan
     for(i = 0; i < yValues.length; i++){
         if(yValues[i] <= 0) {barColors.push("rgba(10, 185, 0, 0.7)"),bordColors.push("rgba(0, 167, 12, 1)")}
         if(yValues[i] > 0 && yValues[i] <=ylaRaja) {barColors.push("rgb(34, 88, 122, 0.7)"),bordColors.push("rgb(24, 61, 85, 1)")}
         if(yValues[i] >= ylaRaja) {barColors.push("rgba(255, 0, 0, 0.7)"),bordColors.push("rgba(165, 0, 0, 1)")}
     }
 
+//Perus palkkitaulukko
     new Chart("sähköhinta", {
         type: "bar",
         data: {
@@ -63,7 +67,7 @@
             datasets: [{
                 label: 'euro',
                 maxBarThickness: 40,
-                backgroundColor: "orange",
+                backgroundColor: "rgb(34, 88, 122, 1)",
                 data: yValues
             }]
         },
@@ -92,7 +96,8 @@
         
     })
 
-    new Chart("bartaulu1", {//TauluV.1
+//Palkkitaulukko jossa palkin värit määräytyvät hinnan  mukaan
+    new Chart("PalkkiTaulu", {
         type: "bar",
         data: {
             labels: xValues,
@@ -113,13 +118,13 @@
                     },
                     gridLines: {
                         //display: false,
-                        color: "#000000" 
+                        color: "#ffffff" //Väritää tausta ruudukkoviivat valkoisiksi y akselilla
                     }
                 }],
                 xAxes: [{
                     gridLines: {
                         //display: false,
-                        color: "#ffffff"
+                        color: "#ffffff" //Väritää tausta ruudukkoviivat valkoisiksi x akselilla
                     }  
                 }]
             },
@@ -140,19 +145,20 @@
         
     })
 
-    new Chart("linetaulu1", { //TauluV.2
+//Viivakaavio
+    new Chart("ViivaTaulu", {
         type: "line",
         data: {
             labels: xValues,
             datasets: [{
                 label: 'euro',
-                fill: false,
+                fill: false, //Tyhjentää alueen
                 backgroundColor: "rgb(24, 61, 85, 1)",
                 borderColor: "rgb(34, 88, 122, 1)",
                 borderWidth: 2,
                 data: yValues,
-                tension: 0,
-                //pointRadius: 0 
+                tension: 0, //Asettaa viivan kaarevuuden
+                //pointRadius: 0
             }]
         },
         options: {
@@ -180,19 +186,20 @@
         
     })
 
-    new Chart("linetaulu2", { //TauluV.3
+//Aluekaavio
+    new Chart("AlueTaulu", {
         type: "line",
         data: {
             labels: xValues,
             datasets: [{
                 label: 'euro',
-                fill: true,
+                fill: true, //Täyttää alueen. 
                 backgroundColor: "rgb(34, 88, 122, 1)",
                 //borderColor: "rgb(24, 61, 85, 1)",
                 //borderWidth: 1,
                 data: yValues,
                 tension: 0,
-                pointRadius: 0
+                pointRadius: 0  //poistaa pisteet kaavion viivalta
             }]
         },
         options: {
