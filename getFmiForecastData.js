@@ -109,16 +109,16 @@ const addWindY = new WeatherForecastTimeValue('Turku', 'WindVMS', 'wind_vector_y
 // Tuulivektorin x-komponentti = 'WindUMS'
 // Tuulivektorin y-komponentti = 'WindVMS'
 
-addTemperature.putTimeValuePairsToDb()
-addWindX.putTimeValuePairsToDb()
-addWindY.putTimeValuePairsToDb()
+// addTemperature.putTimeValuePairsToDb()
+// addWindX.putTimeValuePairsToDb()
+// SaddWindY.putTimeValuePairsToDb()
 
 // A class for calculating windspeed from wind vectors V and U
 class WindVector {
     constructor(wind_x_vector, wind_y_vector) {
         this.wind_x_vector = wind_x_vector;
         this.wind_y_vector = wind_y_vector;
-        this.windSpeed = math.sqrt(math.square(this.wind_y_vector) + math.square(this.wind_y_vector))
+        this.windSpeed = math.sqrt(math.square(this.wind_x_vector) + math.square(this.wind_y_vector))
     }
     windParameters() {
     let windAngle = 0; // Wind blows from opposite direction to vector
@@ -155,8 +155,8 @@ class WindVector {
     }
 }
 
-test = new WindVector(-3.6, 0.8)
-//console.log(test.windParameters())
+test = new WindVector(-0.5, 1)
+console.log(test.windSpeed)
 
 module.exports = {
     WeatherForecastTimeValue,
