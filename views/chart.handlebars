@@ -1,0 +1,81 @@
+
+
+<!-- "margin:auto" voi lisätä style osaan jos taulukon haluaa keskittää -->
+
+
+<div>
+    <canvas id="PalkkiTaulu" style="width:80%;max-width:700px;height80%;max_height:350px"></canvas> 
+</div>
+
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script> 
+
+<script>   
+    Chart.defaults.global.defaultFontColor = "#000";
+    const xValues = {{hours}};
+    const yValues = {{prices}};
+    // const xValues = [13, 14, 15, 16];
+    // const yValues = [31.44, 32.1, 30.5, 29.99];
+    const ylaRaja = 5;
+    const barColors = [];
+    const bordColors = [];
+
+//Palkkien väritys Y arvon eli hintojen mukaan
+    for(i = 0; i < yValues.length; i++){
+        if(yValues[i] <= 0) {barColors.push("rgba(10, 185, 0, 0.7)"),bordColors.push("rgba(0, 167, 12, 1)")}
+        if(yValues[i] > 0 && yValues[i] <=ylaRaja) {barColors.push("rgb(34, 88, 122, 0.7)"),bordColors.push("rgb(24, 61, 85, 1)")}
+        if(yValues[i] >= ylaRaja) {barColors.push("rgba(255, 0, 0, 0.7)"),bordColors.push("rgba(165, 0, 0, 1)")}
+    }
+
+
+//Palkkitaulukko jossa palkin värit määräytyvät hinnan  mukaan
+    new Chart("PalkkiTaulu", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'euro',
+                maxBarThickness: 35,
+                backgroundColor: barColors,
+                borderColor: bordColors,
+                borderWidth: 2,
+                data: yValues
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    gridLines: {
+                        //display: false,
+                        color: "#ffffff" //Väritää tausta ruudukkoviivat valkoisiksi y akselilla
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        //display: false,
+                        color: "#ffffff" //Väritää tausta ruudukkoviivat valkoisiksi x akselilla
+                    }  
+                }]
+            },
+            title: {
+                display: true,
+                text: "Päivittäinen Sähköhinta"
+           
+            },
+            legend: {
+                display: false,
+                labels: {
+                    color: "red",
+                    text: "euro"
+                }
+            }
+
+        }
+        
+    })
+    </script>
