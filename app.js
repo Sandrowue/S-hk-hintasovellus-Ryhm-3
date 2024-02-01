@@ -157,6 +157,23 @@ app.get('/viikkoennuste', (req, res) => {
 })
 })
 
+app.get('/viikkoennusteLottanChart', (req, res) => {
+    dynamicData.getHourlyPrice().then((resultset) => {
+        var tableData = resultset.rows; 
+        
+
+        xhours = JSON.stringify(resultset.rows.map(row => Number(row.hour)));
+        
+        yprices = JSON.stringify(resultset.rows.map(row => row.price)); 
+              
+        let chartPageData = {'hours': xhours, 'prices': yprices, 'tableData': tableData}
+        
+
+    res.render('viikkoennusteLottanChart', chartPageData)
+
+    })
+})
+
 app.get('/chart', (req, res) => {
     dynamicData.getHourlyPrice().then((resultset) => {
         var tableData = resultset.rows; 
