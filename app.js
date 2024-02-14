@@ -130,34 +130,8 @@ app.get('/dildoran_index', (req, res) => {
     })
 })
 
+
 app.get('/viikkoennuste', (req, res) => {
-    dynamicData.getHourlyPrice().then((resultset) => {
-    
-        var tableData = resultset.rows; 
-        let tableHours = [];
-        let tablePrices = [];
-
-        for (i in tableData) {
-            let hourStr = tableData[i]['hour'];
-            let hourNr = Number(hourStr)
-            tableHours.push(hourNr)
-
-            let priceNr = tableData[i]['price'];
-            tablePrices.push(priceNr)
-        }
-
-        let jsonTableHours = JSON.stringify(tableHours);
-        
-        let jsonTablePrices = JSON.stringify(tablePrices);
-        
-        let ennustedata = { 'chartHours': jsonTableHours, 'chartPrices': jsonTablePrices, 'tableData': tableData};
-        
-        res.render('viikkoennuste', ennustedata);
-      
-})
-})
-
-app.get('/viikkoennusteLottanChart', (req, res) => {
     dynamicData.getHourlyPrice().then((resultset) => {
         var tableData = resultset.rows; 
         
@@ -169,9 +143,15 @@ app.get('/viikkoennusteLottanChart', (req, res) => {
         let chartPageData = {'hours': xhours, 'prices': yprices, 'tableData': tableData}
         
 
-    res.render('viikkoennusteLottanChart', chartPageData)
+    res.render('viikkoennuste', chartPageData)
 
     })
+})
+
+app.get('/hourlyprices', (req, res) => {
+    let tableData = ''
+
+    res.render('hourlyprices', tableData)
 })
 
 app.get('/chart', (req, res) => {
