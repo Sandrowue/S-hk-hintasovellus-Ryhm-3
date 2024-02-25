@@ -25,6 +25,9 @@ let lastFetchedDate = '1.1.2023';
 let message = '';
 const logFile = 'dataOperationsLog';
 
+// Fetches electricity prices with imported function from priceService file and adds them to Postres Database
+// Node cron is used for timing
+
 cron.schedule(timer, () => {
     try {
         let timestamp = new Date();
@@ -76,12 +79,16 @@ cron.schedule(timer, () => {
     }
 });
 
+// Fetches weather forecast Data and adds it to postgresSQL Database with imported getFmiForecast functions 
+// Node cron is used for timing
 cron.schedule(weather_timer, () => {
     addTemperature.putTimeValuePairsToDb()
     addWindX.putTimeValuePairsToDb()
     addWindY.putTimeValuePairsToDb()
     })
 
+// Fetches weather observation Data and adds it to postgresSQL Database with imported getFmiForecast functions 
+// Node cron is used for timing  
 cron.schedule(weather_timer, () => {
     addObservation.putTimeValuePairsToDb()
 })
