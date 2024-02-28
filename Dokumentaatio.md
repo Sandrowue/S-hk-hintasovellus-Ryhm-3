@@ -18,7 +18,9 @@ Sovelluksen kehittäjinä on tomiminnut:
 - Jäsenet tutustuivat erillaisiin kirjastoihin, jotka mahtollistavat postresSQL tietokannan ja NodeJS ohjelman välisen yhteyden. Pgadmin valittiin sovelluksen käyttöön.
 - Luotiin microservice.js Javascript tiedoston joka tallentaa alustavasti sähköhintoja tietokantaan. Tähän tarkoitukseen käytetään Pgadminin PgPoolia.
 - Postmanilla testattiin erillaisie api-rajapinta hakuja Ilmantietolaitokselta jotka esittelevät erillaisia säätietoja xml muodossa.
+- Kartoitettiin eri sääasemoita jotka tarjoavat säätietoa ympäri suomea ja varsinkin meren rannikkoseudulla.
 
 ## Sovelluksen jatkokehitys
 - Valitun Figma luonnoksen tarkennettiin ja parannettiin. Eri värivaihtoehtoja testattiin. Lopulliset luonnokset otettiin Bootstrap Studion tuottovaiheen malliksi.
 - Luotiin getFmiObservationListData.js Javascript tiedoston jonka funktio hakee tämänhetkiset säätiedot haluttavalta sääasemalta ja muodostaa niistä objektin, ja lisää ojektin arvot tietokantaan.
+- Luotiin getFmiForecastData.js nimisen tiedoston jonka funktio hakee
