@@ -14,6 +14,7 @@ Sovelluksen kehittäjinä on tomiminnut:
 - Ryhmän jäsenet tekivät Figmalla erillaisia käyttöliittymän luonnoksia. Luonnokset esitettiin ja vertailtiin. Kokouksessa valittiin mitkä luonnokset jatkokehitetään, ja mitä muutoksia 
   niihin tehdään.
 - Luotiin priceService.js Javascript tiedoston lukkoonlyötyjen sähköhintojen hakemiseen.
+- Asennettiin PostgresSQL ja kehitettiin sähköhintatietoille sopivia taulukoita ja näkymiä. Alustettiin myös näkymiä sähkön keskihintan laskemiseen, päivältä, viikolta, kuukaudelta tai vuodelta.
 - Jäsenet tutustuivat erillaisiin Time Schedulereihin sähköhintojen ja säätietojen hakuun. Node-cron valittiin sovelluksen käyttöön.
 - Jäsenet tutustuivat erillaisiin kirjastoihin, jotka mahtollistavat postresSQL tietokannan ja NodeJS ohjelman välisen yhteyden. Pgadmin valittiin sovelluksen käyttöön.
 - Luotiin microservice.js Javascript tiedoston joka tallentaa alustavasti sähköhintoja tietokantaan. Tähän tarkoitukseen käytetään Pgadminin PgPoolia. Tämä funktio toimii Crone Schedulen alla.
@@ -24,5 +25,6 @@ Sovelluksen kehittäjinä on tomiminnut:
 - Valitun Figma luonnoksen tarkennettiin ja parannettiin. Eri värivaihtoehtoja testattiin. Lopulliset luonnokset otettiin Bootstrap Studion tuottovaiheen malliksi.
 - Luotiin getFmiObservationListData.js Javascript tiedoston jonka funktio hakee tämänhetkiset säätiedot yhteenvetossa haluttavalta sääasemalta ja muodostaa niistä objektin, ja lisää ojektin arvot tietokantaan.
 - Luotiin getFmiForecastData.js nimisen tiedoston jonka funktio hakee tulevien tuntien ja päivien sääennusteet avainarvoparina ja lisää arvot tietokantaan.
+- Ke
 - Importoitiin getFmiObservationListData.js ja getFmiForecastData.js microservice.js tiedostoon, jossa kyseiset funktiot toimii erillisen säätieto-Crone-Schedulen alla.
 - Lopullisen Figma luonnosten persusteella kehitettiin Bootstrap Studion avulla graafisen käyttöliittymän koodin.
