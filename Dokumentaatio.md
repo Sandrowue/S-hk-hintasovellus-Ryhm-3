@@ -23,4 +23,5 @@ Sovelluksen kehittäjinä on tomiminnut:
 ## Sovelluksen jatkokehitys
 - Valitun Figma luonnoksen tarkennettiin ja parannettiin. Eri värivaihtoehtoja testattiin. Lopulliset luonnokset otettiin Bootstrap Studion tuottovaiheen malliksi.
 - Luotiin getFmiObservationListData.js Javascript tiedoston jonka funktio hakee tämänhetkiset säätiedot yhteenvetossa haluttavalta sääasemalta ja muodostaa niistä objektin, ja lisää ojektin arvot tietokantaan.
-- Luotiin getFmiForecastData.js nimisen tiedoston jonka funktio hakee tulevien tuntien ja päivien sääennusteet avainarvoparina.
+- Luotiin getFmiForecastData.js nimisen tiedoston jonka funktio hakee tulevien tuntien ja päivien sääennusteet avainarvoparina ja lisää arvot tietokantaan.
+- Importoitiin getFmiObservationListData.js ja getFmiForecastData.js microservice.js tiedostoon, jossa kyseiset funktiot toimii erillisen säätieto Crone Schedulen alla.
