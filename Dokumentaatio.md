@@ -11,5 +11,7 @@ Sovelluksen kehittäjinä on tomiminnut:
   Hanldebarsin avulla, kokousten puheenjohtaja
 
 ## Sovelluksen luonnosvaihe
-Ryhmän jäsenet tekivät Figmalla erillaisia käyttöliittymän luonnoksia. Luonnokset esitettiin ja vertailtiin. Kokouksessa valittiin mitkä luonnokset jatkokehitettään, ja mitä muutoksia 
+Ryhmän jäsenet tekivät Figmalla erillaisia käyttöliittymän luonnoksia. Luonnokset esitettiin ja vertailtiin. Kokouksessa valittiin mitkä luonnokset jatkokehitetään, ja mitä muutoksia 
 niihin tehdään.
+Jäsenet tutustuivat erillaisiin Time Schedulereihin. Node-cron valittiin sovelluksen käyttöön.
+Jäsenet tutustuivat erillaisiin kirjastoihin, jotka mahtollistavat postresSQL tietokannan ja NodeJS ohjelman välisen yhteyden. Pgadmin valittiin sovelluksen käyttöön.
