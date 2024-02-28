@@ -21,4 +21,4 @@ Sovelluksen kehittäjinä on tomiminnut:
 
 ## Sovelluksen jatkokehitys
 - Valitun Figma luonnoksen tarkennettiin ja parannettiin. Eri värivaihtoehtoja testattiin. Lopulliset luonnokset otettiin Bootstrap Studion tuottovaiheen malliksi.
-- Luotiin getFmiObservationListData.js Javascript tiedoston
+- Luotiin getFmiObservationListData.js Javascript tiedoston jonka funktio hakee tämänhetkiset säädietot haluttavalta sääasemalta ja muodostaa niistä objektin, ja lisää ojektin arvot tietokantaan.
