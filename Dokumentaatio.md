@@ -1,1 +1,1 @@
-# Sähkövahti sähköhintaseuranta ja -ennustamisen solelluksen dokumentaatio
+# Sähkövahti sähköhintaseuranta ja -ennustamisen sovelluksen dokumentaatio
