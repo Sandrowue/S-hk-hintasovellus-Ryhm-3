@@ -17,6 +17,8 @@ Sovelluksen kehittäjinä on tomiminnut:
 - Jäsenet tutustuivat erillaisiin Time Schedulereihin sähköhintojen ja säätietojen hakuun. Node-cron valittiin sovelluksen käyttöön.
 - Jäsenet tutustuivat erillaisiin kirjastoihin, jotka mahtollistavat postresSQL tietokannan ja NodeJS ohjelman välisen yhteyden. Pgadmin valittiin sovelluksen käyttöön.
 - Luotiin microservice.js Javascript tiedoston joka tallentaa alustavasti sähköhintoja tietokantaan. Tähän tarkoitukseen käytetään Pgadminin PgPoolia.
+- Postmanilla testattiin erillaisie api-rajapinta hakuja Ilmantietolaitokselta jotka esittelevät erillaisia säätietoja xml muodossa.
 
 ## Sovelluksen jatkokehitys
 - Valitun Figma luonnoksen tarkennettiin ja parannettiin. Eri värivaihtoehtoja testattiin. Lopulliset luonnokset otettiin Bootstrap Studion tuottovaiheen malliksi.
+- Luotiin getFmiObservationListData.js Javascript tiedoston
