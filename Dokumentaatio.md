@@ -13,5 +13,7 @@ Sovelluksen kehittäjinä on tomiminnut:
 ## Sovelluksen luonnosvaihe
 - Ryhmän jäsenet tekivät Figmalla erillaisia käyttöliittymän luonnoksia. Luonnokset esitettiin ja vertailtiin. Kokouksessa valittiin mitkä luonnokset jatkokehitetään, ja mitä muutoksia 
   niihin tehdään.
-- Jäsenet tutustuivat erillaisiin Time Schedulereihin. Node-cron valittiin sovelluksen käyttöön.
+- Luotiin priceService.js Javascript tiedoston lukkoonlyötyjen sähköhintojen hakemiseen.
+- Jäsenet tutustuivat erillaisiin Time Schedulereihin sähköhintojen ja säätietojen hakuun. Node-cron valittiin sovelluksen käyttöön.
 - Jäsenet tutustuivat erillaisiin kirjastoihin, jotka mahtollistavat postresSQL tietokannan ja NodeJS ohjelman välisen yhteyden. Pgadmin valittiin sovelluksen käyttöön.
+- Luotuiin microservice.js Javascript tiedoston joka tallentaa alustavasti sähköhintoja tietokantaan
