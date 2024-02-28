@@ -28,3 +28,4 @@ Sovelluksen kehittäjinä on tomiminnut:
 - Luotiin getFmiForecastData.js nimisen tiedoston jonka funktio hakee tulevien tuntien ja päivien sääennusteet avainarvoparina ja lisää arvot tietokantaan.
 - Importoitiin getFmiObservationListData.js ja getFmiForecastData.js microservice.js tiedostoon, jossa kyseiset funktiot toimii erillisen säätieto-Crone-Schedulen alla.
 - Lopullisen Figma luonnosten persusteella kehitettiin Bootstrap Studion avulla graafisen käyttöliittymän koodin.
+- Luotiin getPageData.js nimisen Tietoston jonka funktioiden SQL kyselyjen avulla haetaan tietokannasta kukin sivun osion tarvittavat dynaamiset tiedot renderöintiin.
