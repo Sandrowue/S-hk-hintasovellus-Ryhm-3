@@ -14,6 +14,8 @@ const {engine} = require('express-handlebars');
 // Get external data with node-fetch for verion 3.x
 // import fetch from 'node-fetch';
 
+const { round } = require('mathjs');
+
 // EXPRESS APPLICATION SETTINGS
 
 // Home made module to get current price
@@ -120,27 +122,57 @@ app.get('/weather_observation', (req, res) => {
 
 app.get('/dildoran_index', (req, res) => {
     let homePageData = {
-        'price': 0
+        'price': 0,
+        'hour': 0,
+        'nextPrice': 0,
+        'nextHour': 0,
+        'temperature': 0,
+        'wind_speed': 0,
+        'average': 0,
+        'highest': 0,
+        'lowest': 0,
     };
 
-    dynamicData.getCurrentPrice().then((resultset) => {
+    dynamicData.getHourlyPrice().then((resultset) => {
         homePageData.price = resultset.rows[0]['price']
-        console.log(homePageData.price)
-        res.render('dildoran_index', homePageData)
+        homePageData.hour = resultset.rows[0]['hour']
+        homePageData.nextPrice = resultset.rows[1]['price']
+        homePageData.nextHour = resultset.rows[1]['hour']
+        
+        dynamicData.getCurrentTemperature().then((resultset) => {
+            homePageData.temperature = resultset.rows[0]['temperature']
+            
+            dynamicData.getCurrentWind_speed().then((resultset) => {
+                homePageData.wind_speed = resultset.rows[0]['wind_speed']
+
+                dynamicData.getAverageOfCurrentAndNextDay().then((resultset) => {
+                    homePageData.average = round(resultset.rows[1]['keskihinta'], 2)
+
+                    dynamicData.getHighestPriceOfCurrentAndNextDay().then((resultset) => {
+                        homePageData.highest = round(resultset.rows[1]['yläraja'], 2)
+
+                        dynamicData.getLowestPriceOfCurrentAndNextDay().then((resultset) => {
+                            homePageData.lowest = round(resultset.rows[1]['alaraja'])
+                            res.render('dildoran_index', homePageData)
+                        })
+                    })
+                })
+            })
+        })
     })
 })
 
 
 app.get('/viikkoennuste', (req, res) => {
-    dynamicData.getHourlyPrice().then((resultset) => {
+    dynamicData.getWeatherForecast().then((resultset) => {
         var tableData = resultset.rows; 
         
 
         xhours = JSON.stringify(resultset.rows.map(row => Number(row.hour)));
         
-        yprices = JSON.stringify(resultset.rows.map(row => row.price)); 
+        yprices = JSON.stringify(resultset.rows.map(row => row.temperature)); 
               
-        let chartPageData = {'hours': xhours, 'prices': yprices, 'tableData': tableData}
+        let chartPageData = {'hours': xhours, 'temperature': yprices, 'tableData': tableData}
         
 
     res.render('viikkoennuste', chartPageData)

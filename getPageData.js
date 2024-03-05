@@ -57,7 +57,25 @@ const getWeatherObservation = async () => {
     let resultset = await pool.query('SELECT * FROM public.weather_observation ORDER BY timestamp DESC LIMIT 10')
     console.log(resultset)
     return resultset;
+    
+}
 
+const getAverageOfCurrentAndNextDay = async () => {
+    let resultset = await pool.query('SELECT keskihinta FROM public.average_and_standard_deviation_by_year_and_month_and_day LIMIT 2')
+    console.log(resultset)
+    return resultset;
+}
+
+const getHighestPriceOfCurrentAndNextDay = async () => {
+    let resultset = await pool.query('SELECT yläraja FROM public.average_and_standard_deviation_by_year_and_month_and_day LIMIT 2')
+    console.log(resultset)
+    return resultset;
+}
+
+const getLowestPriceOfCurrentAndNextDay = async () => {
+    let resultset = await pool.query('SELECT alaraja FROM public.average_and_standard_deviation_by_year_and_month_and_day LIMIT 2')
+    console.log(resultset)
+    return resultset;
 }
 
 module.exports = {
@@ -68,11 +86,14 @@ module.exports = {
     getCurrentWind_speed,
     getWeatherForecast,
     getWeatherObservation,
+    getAverageOfCurrentAndNextDay,
+    getHighestPriceOfCurrentAndNextDay,
+    getLowestPriceOfCurrentAndNextDay,
     /*getDay,
     getHour,
     getPrice*/
 }
 
 // getTemperatureForecast()
-getWeatherObservation()
+getLowestPriceOfCurrentAndNextDay()
 

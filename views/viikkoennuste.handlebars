@@ -32,7 +32,7 @@
 
 
         <div class="container d-flex flex-column" style="padding: 15px;padding-right: 15px;padding-left: 15px;background: #77bfa3;border-radius: 5px;border-width: 1px;border-style: solid;width: 325px;height: 200px;">
-                <p style="text-decoration:  underline;">Seuraavan 5 vrk:n keskihinta ennuste:</p>
+                <p style="text-decoration:  underline;">Seuraavan 2 vrk:n ennuste:</p>
                 
 
 <div>
@@ -47,7 +47,7 @@
 <script>   
     Chart.defaults.global.defaultFontColor = "#000";
     const xValues = {{hours}};
-    const yValues = {{prices}};
+    const yValues = {{temperature}};
     // const xValues = [13, 14, 15, 16];
     // const yValues = [31.44, 32.1, 30.5, 29.99];
     const ylaRaja = 5;
@@ -94,7 +94,7 @@
             },
             title: {
                 display: true,
-                text: "Päivittäinen Sähköhinta"
+                text: "Päivittäinen Lämpötila(provisoorinen)"
            
             },
             legend: {
@@ -118,9 +118,10 @@
                     <thead class="d-flex flex-row" style="/*width: 300px;*/flex: 1;width: 100%;border-radius: 5px;">
                         <tr class="d-flex flex-row" style="width: 332px;width: auto;flex: 1;">
                             
-                            <th style="/*width: auto;*/flex: 1;border-width: 1px;border-style: solid;">päivä</th>
+                            <th style="/*width: auto;*/flex: 1;border-width: 1px;border-style: solid;">Päivä</th>
                             <th style="/*width: auto;*/flex: 1;border-width: 1px;border-style: solid;">Tunti</th>
-                            <th style="/*width: auto;*/flex: 1;border-width: 1px;border-style: solid;">Hinta</th>
+                            <th style="/*width: auto;*/flex: 1;border-width: 1px;border-style: solid;">Lämpötila</th>
+                            <th style="/*width: auto;*/flex: 1;border-width: 1px;border-style: solid;">Tuulen nopeus</th>
                             
                         </tr>
                     </thead>
@@ -129,7 +130,8 @@
                         <tr class="d-flex justify-content-between" style="width: 332px;width: auto;">
                             <td style="flex: 1;border-width: 1px;border-style: solid;">{{day}}</td>
                             <td style="flex: 1;border-width: 1px;border-style: solid;">{{hour}}</td>
-                            <td style="flex: 1;border-width: 1px;border-style: solid;">{{price}}</td>
+                            <td style="flex: 1;border-width: 1px;border-style: solid;">{{temperature}}</td>
+                            <td style="flex: 1;border-width: 1px;border-style: solid;">{{wind_speed}}</td>
                             
                             
                         </tr>
