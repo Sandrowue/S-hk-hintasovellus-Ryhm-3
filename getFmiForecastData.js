@@ -47,12 +47,14 @@ class WeatherForecastTimeValue {
         };
     }
 
+    // Test function to see if xml Data is aviable
     getFMIDataAsXML() {
         axios.request(this.axiosConfig).then((response) => {
             console.log(response.data)
         })
     }
 
+    // Thest function to see if xml conersion to array works properly
     readAndConvertToArray() {
         axios.request(this.axiosConfig).then((response) => {
             transform(response.data, this.xmlTemplate).then((result) => {
@@ -62,6 +64,7 @@ class WeatherForecastTimeValue {
         })
     }
 
+    // Fetches weather forecast Data of temperature or wind vectors and adds them to Postgres Database
     putTimeValuePairsToDb() {
         let tableName = this.parameterName + '_forecast';    
         const sqlClause = 'INSERT INTO public.' + tableName + ' VALUES ($1, $2, $3) ON CONFLICT DO NOTHING RETURNING *';

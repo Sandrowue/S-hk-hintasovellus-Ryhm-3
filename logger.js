@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+// Adds information when Data is fetched to the logger file
 const add2log = (entry, fileName) => {
     const isoTimeStamp = new Date().toISOString();
     const logRow = entry + '@' + isoTimeStamp + '\n'

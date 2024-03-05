@@ -11,6 +11,7 @@ const pool = new Pool(
     database
 );
 
+// class to make object with gathered weather observation Data
 class FullWeatherData {
     constructor(latitude, longitude, timestamp, temperature, wind_speed, wind_direction) {
         this.latitude = latitude;
@@ -60,11 +61,15 @@ class WeatherForecast {
             headers: {},
         };
     }
+
+    // Test function to see if xml Data is aviable
     getFMIDataAsXML() {
         axios.request(this.axiosConfig).then((response) => {
             console.log(response.data)
         })
     }
+
+    // Thest function to see if xml conersion to array works properly
     readAndConvertToArray() {
         axios.request(this.axiosConfig).then((response) => {
             let storeResponse = response;
@@ -81,6 +86,7 @@ class WeatherForecast {
         })        
     }
 
+    // Fetches weather observation Data of temperature, wind speed, wind direction and also place, time and coordinates and adds them to Postgres Database
     putWeatherObjectToDb() {
         let tableName = 'weather_observation';
         const sqlClause = 'INSERT INTO public.' + tableName + ' VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT DO NOTHING RETURNING *';
