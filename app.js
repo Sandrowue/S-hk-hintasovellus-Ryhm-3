@@ -181,10 +181,55 @@ app.get('/viikkoennuste', (req, res) => {
 })
 
 app.get('/hourlyprices', (req, res) => {
-    let tableData = ''
+    dynamicData.getHourlyPrice().then((resultset) => {
+        var tableData = resultset.rows;
+        
+        
+        
+        let tableHours = [];
+        let tablePrices = [];
+        
+        for (i in tableData) {
+            let hourStr = tableData[i]['hour'];
+            let hourNr = Number(hourStr)
+            tableHours.push(hourNr)
+            
+            let priceNr = tableData[i]['price'];
+            tablePrices.push(priceNr)
+        }
+        
+        let jsonTableHours = JSON.stringify(tableHours);
+        
+        let jsonTablePrices = JSON.stringify(tablePrices);
+        
+        let chartPageData = { 
+            'chartHours': jsonTableHours, 
+            'chartPrices': jsonTablePrices, 
+            'tableData': tableData,
+            'average': 0,
+            'highest': 0,
+            'lowest': 0,
+        };
 
-    res.render('hourlyprices', tableData)
-})
+        dynamicData.getAverageOfCurrentAndNextDay().then((resultset) => {
+            chartPageData.average = round(resultset.rows[1]['keskihinta'], 2)
+
+            dynamicData.getHighestPriceOfCurrentAndNextDay().then((resultset) => {
+                chartPageData.highest = round(resultset.rows[1]['yläraja'], 2)
+
+                dynamicData.getLowestPriceOfCurrentAndNextDay().then((resultset) => {
+                    chartPageData.lowest = round(resultset.rows[1]['alaraja'])
+                    res.render('hourlyprices', chartPageData);
+                    
+                })
+            })
+        })
+        
+    })
+    
+});
+
+
 
 app.get('/chart', (req, res) => {
     dynamicData.getHourlyPrice().then((resultset) => {
