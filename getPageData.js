@@ -24,7 +24,7 @@ const getHourlyPrice = async () => {
 /*const getDay = async () => {
     let resultset = await pool.query('SELECT day FROM public.hourly_page');
     return resultset;
-}
+} */
 
 // gets only hour of confirmed electricity price
 const getHour = async () => {
@@ -36,7 +36,7 @@ const getHour = async () => {
 const getPrice = async() => {
     let resultset = await pool.query('SELECT price FROM public.hourly_page');
     return resultset
-}*/
+}
 
 // gets only temperature from weather observation data
 const getCurrentTemperature = async () => {
@@ -58,7 +58,7 @@ const getCurrentWind_speed = async () => {
 
 // gets weather forecast data (temperature and wind vectors)
 const getWeatherForecast = async () => {
-    let resultset = await pool.query('SELECT * FROM public.forecast_temp_wind_vector_and_wind_speed ORDER BY timestamp DESC LIMIT 10')
+    let resultset = await pool.query('SELECT * FROM public.last_ten_weather_forecast ORDER BY timestamp LIMIT 10')
     return resultset;
 }
 
@@ -99,9 +99,9 @@ module.exports = {
     getAverageOfCurrentAndNextDay,
     getHighestPriceOfCurrentAndNextDay,
     getLowestPriceOfCurrentAndNextDay,
-    /*getDay,
+    /*getDay,*/
     getHour,
-    getPrice*/
+    getPrice,
 }
 
 // getTemperatureForecast()
