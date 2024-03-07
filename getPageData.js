@@ -21,10 +21,10 @@ const getHourlyPrice = async () => {
 }
 
 // gets only day of confirmed elecrticity price
-/*const getDay = async () => {
+const getDay = async () => {
     let resultset = await pool.query('SELECT day FROM public.hourly_page');
     return resultset;
-} */
+} 
 
 // gets only hour of confirmed electricity price
 const getHour = async () => {
@@ -99,7 +99,7 @@ module.exports = {
     getAverageOfCurrentAndNextDay,
     getHighestPriceOfCurrentAndNextDay,
     getLowestPriceOfCurrentAndNextDay,
-    /*getDay,*/
+    getDay,
     getHour,
     getPrice,
 }
