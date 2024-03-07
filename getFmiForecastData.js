@@ -100,21 +100,9 @@ class WeatherForecastTimeValue {
     }
 }
 
-const addTemperature = new WeatherForecastTimeValue('Turku', 'Temperature', 'temperature')
-const addWindX = new WeatherForecastTimeValue('Turku', 'WindUMS', 'wind_vector_x')
-const addWindY = new WeatherForecastTimeValue('Turku', 'WindVMS', 'wind_vector_y')
-
-// addTemperature.getFMIDataAsXML()
-// addWindX.readAndConvertToArray()
-// addWindY.readAndConvertToArray()
-
 // temperature = parameter Code 'Temperature'
 // Tuulivektorin x-komponentti = 'WindUMS'
 // Tuulivektorin y-komponentti = 'WindVMS'
-
-// addTemperature.putTimeValuePairsToDb()
-// addWindX.putTimeValuePairsToDb()
-// SaddWindY.putTimeValuePairsToDb()
 
 // A class for calculating windspeed from wind vectors V and U
 class WindVector {
@@ -157,9 +145,6 @@ class WindVector {
     }
     }
 }
-
-test = new WindVector(-0.5, 1)
-console.log(test.windSpeed)
 
 module.exports = {
     WeatherForecastTimeValue,
