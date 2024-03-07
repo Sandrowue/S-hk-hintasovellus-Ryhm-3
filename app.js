@@ -38,89 +38,6 @@ app.set('view engine', 'handlebars');
 
 // Route to home page
 app.get('/', (req, res) => {
-    
-    // Handlebars needs a key to show data on page, json is a good way to send it
-    let homePageData = {
-        'price': 0,
-        'wind_speed': 0,
-        'wind_direction': 0,
-        'temperature': 0
-    };
-
-    dynamicData.getCurrentPrice().then((resultset) => {
-        homePageData.price = resultset.rows[0]['price']
-        console.log(homePageData.price)
-        
-        dynamicData.getCurrentTemperature().then((resultset) => {
-            homePageData.temperature = resultset.rows[0]['temperature']
-            console.log(homePageData.temperature)
-
-            dynamicData.getCurrentWind_direction().then((resultset) => {
-                homePageData.wind_direction = resultset.rows[0]['wind_direction']
-                console.log(homePageData.resultset)
-
-                dynamicData.getCurrentWind_speed().then((resultset) => {
-                    homePageData.wind_speed = resultset.rows[0]['wind_speed']
-                    console.log(homePageData.resultset)
-                    res.render('index', homePageData)
-                })
-            })
-        })
-        
-        // Render index.handlebars and send dynamic data to the page
-    })
-
-
-});
-// Route to hourly data page
-app.get('/hourly', (req, res) => {
-    // Data will be presented in a table. To loop all rows we need a key for table and for column
-        
-    dynamicData.getHourlyPrice().then((resultset) => {
-        var tableData = resultset.rows;
-        
-        
-        
-        let tableHours = [];
-        let tablePrices = [];
-
-        for (i in tableData) {
-            let hourStr = tableData[i]['hour'];
-            let hourNr = Number(hourStr)
-            tableHours.push(hourNr)
-
-            let priceNr = tableData[i]['price'];
-            tablePrices.push(priceNr)
-        }
-
-        let jsonTableHours = JSON.stringify(tableHours);
-        
-        let jsonTablePrices = JSON.stringify(tablePrices);
-        
-        let chartPageData = { 'chartHours': jsonTableHours, 'chartPrices': jsonTablePrices, 'tableData': tableData};
-        
-        res.render('hourly', chartPageData);
-    })
-    
-});
-
-app.get('/weather_forecast', (req, res) => {
-    dynamicData.getWeatherForecast().then((resultset) => {
-        var tableData = resultset.rows;
-        let weatherForecastData = {'tableData': tableData};
-        res.render('weather_forecast', weatherForecastData)
-    })    
-})
-
-app.get('/weather_observation', (req, res) => {
-    dynamicData.getWeatherObservation().then((resultset) => {
-        var tableData = resultset.rows;
-        let weatherObservationData = {'tableData': tableData};
-        res.render('weather_observation', weatherObservationData)
-    })
-})
-
-app.get('/dildoran_index', (req, res) => {
     let homePageData = {
         'price': 0,
         'hour': 0,
@@ -153,7 +70,7 @@ app.get('/dildoran_index', (req, res) => {
 
                         dynamicData.getLowestPriceOfCurrentAndNextDay().then((resultset) => {
                             homePageData.lowest = round(resultset.rows[1]['alaraja'])
-                            res.render('dildoran_index', homePageData)
+                            res.render('index', homePageData)
                         })
                     })
                 })
@@ -162,7 +79,7 @@ app.get('/dildoran_index', (req, res) => {
     })
 })
 
-
+// Route to viikkoennuste page
 app.get('/viikkoennuste', (req, res) => {
     dynamicData.getWeatherForecast().then((resultset) => {
         var tableData = resultset.rows; 
@@ -179,6 +96,8 @@ app.get('/viikkoennuste', (req, res) => {
 
     })
 })
+
+// Route to hourlyprices page
 
 app.get('/hourlyprices', (req, res) => {
     dynamicData.getHourlyPrice().then((resultset) => {
@@ -229,23 +148,6 @@ app.get('/hourlyprices', (req, res) => {
     
 });
 
-
-
-app.get('/chart', (req, res) => {
-    dynamicData.getHourlyPrice().then((resultset) => {
-        var tableData = resultset.rows; 
-        
-
-        xhours = JSON.stringify(resultset.rows.map(row => Number(row.hour)));
-        
-        yprices = JSON.stringify(resultset.rows.map(row => row.price)); 
-              
-        let chartPageData = {'hours': xhours, 'prices': yprices, 'tableData': tableData}
-        
-
-    res.render('chart', chartPageData)
-    })
-})
 // START THE LISTENER
 app.listen(PORT);
 console.log('Server started and it will listen PCP port', PORT);
