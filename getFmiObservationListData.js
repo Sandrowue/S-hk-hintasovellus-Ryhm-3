@@ -173,13 +173,6 @@ class WeatherForecast {
     }
 }
 
-
-
-test = new WeatherForecast('turku')
-// test.getFMIDataAsXML()
-// test.readAndConvertToArray()
-test.putWeatherObjectToDb()
-
 module.exports = {
     FullWeatherData,
     WeatherForecast
