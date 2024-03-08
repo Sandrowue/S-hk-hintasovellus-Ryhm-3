@@ -8,7 +8,8 @@ const observation = require('./getFmiObservationListData');
 
 const database = settings.database;
 const timer = settings.timer;
-const weather_timer = settings.weather_timer;
+const weather_forecast_timer = settings.weather_forecast_timer;
+const weather_observation_timer = settings.weather_observation_timer;
 
 const addTemperature = new forecast.WeatherForecastTimeValue('Turku', 'Temperature', 'temperature');
 const addWindX = new forecast.WeatherForecastTimeValue('Turku', 'WindUMS', 'wind_vector_x');
@@ -81,7 +82,7 @@ cron.schedule(timer, () => {
 
 // Fetches weather forecast Data and adds it to postgresSQL Database with imported getFmiForecast functions 
 // Node cron is used for timing
-cron.schedule(weather_timer, () => {
+cron.schedule(weather_forecast_timer, () => {
     addTemperature.putTimeValuePairsToDb()
     addWindX.putTimeValuePairsToDb()
     addWindY.putTimeValuePairsToDb()
@@ -89,6 +90,6 @@ cron.schedule(weather_timer, () => {
 
 // Fetches weather observation Data and adds it to postgresSQL Database with imported getFmiForecast functions 
 // Node cron is used for timing  
-cron.schedule(weather_timer, () => {
+cron.schedule(weather_observation_timer, () => {
     addObservation.putTimeValuePairsToDb()
 })
