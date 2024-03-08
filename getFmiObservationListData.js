@@ -177,3 +177,8 @@ module.exports = {
     FullWeatherData,
     WeatherForecast
 }
+
+test = new WeatherForecast('turku')
+// test.getFMIDataAsXML()
+// test.readAndConvertToArray()
+test.putWeatherObjectToDb()
