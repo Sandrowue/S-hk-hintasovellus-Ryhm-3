@@ -7,7 +7,9 @@
         "port": "5432"
     },
     
-    "timer": "*/1 * * * *",
+    "timer": "30 * * * * *",
 
-    "weather_timer": "*/1 * * * *"
+    "weather_forecast_timer": "40 * * * * *",
+
+    "weather_observation_timer": "50 * * * * *"
 }
