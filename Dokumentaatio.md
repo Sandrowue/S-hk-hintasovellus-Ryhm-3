@@ -29,3 +29,4 @@ Sovelluksen kehittäjinä on tomiminnut:
 - Importoitiin getFmiObservationListData.js ja getFmiForecastData.js microservice.js tiedostoon, jossa kyseiset funktiot toimii erillisen säätieto-Crone-Schedulen alla.
 - Lopullisen Figma luonnosten persusteella kehitettiin Bootstrap Studion avulla graafisen käyttöliittymän koodin.
 - Luotiin getPageData.js nimisen Tietoston jonka funktioiden SQL kyselyjen avulla haetaan tietokannasta kukin sivun osion tarvittavat dynaamiset tiedot renderöintiin.
+- Valmiit Bootstrap sivunosat exportoitiin VisualStudioCoden, muutettiin ne Handlebars tiedostoksi, ja lisättiin tarvittavat Hanlebarit kohteisin, missä näytetään dynaamista Data.
