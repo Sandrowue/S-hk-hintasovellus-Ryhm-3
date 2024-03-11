@@ -57,14 +57,8 @@ body {
 
 #navbar0 {
   background: rgb(119,191,163);
-  width: 360px;
   height: 60px;
-}
-
-@media (min-width: 1200px) {
-  #navbar0 {
-    width: 1200px;
-  }
+  padding: -3px;
 }
 
 @media (min-width: 1200px) {
