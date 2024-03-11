@@ -68,7 +68,7 @@ body {
 
 @media (min-width: 1200px) {
   #salamaB {
-    width: 360px;
+    width: 100%;
   }
 }
 
